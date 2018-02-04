@@ -174,14 +174,6 @@ int main( int argc, char *argv[] )
         return EXIT_FAILURE;
     }
     
-    int flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
-    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, flags);
-    if (renderer == nullptr)
-    {
-        cout << SDL_GetError();
-        return -1;
-    }
-    
     SDL_Event windowEvent;
 
     imageSurface = SDL_LoadBMP( "hello_world.bmp" );
