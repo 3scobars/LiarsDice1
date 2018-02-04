@@ -1,6 +1,7 @@
 # LiarsDice
 #include <iostream>
 #include <SDL2/SDL.h>
+#include <citme>
 
 using namespace std;
 
