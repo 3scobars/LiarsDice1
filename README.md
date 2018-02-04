@@ -1,7 +1,7 @@
 # LiarsDice
 #include <iostream>
 #include <SDL2/SDL.h>
-#include <citme>
+#include <ctime>
 
 using namespace std;
 
@@ -18,6 +18,7 @@ unsigned int random_integer()
     }
     return rand();
 }
+
 
 void create(SDL_Surface *d, SDL_Surface *winf, SDL_Window *win, SDL_Event windowEvent1)
 {
@@ -151,6 +152,7 @@ void choose1(SDL_Surface *p, SDL_Surface *p2, SDL_Surface *p3, SDL_Surface *p4, 
     }
 }
 
+
 int main( int argc, char *argv[] )
 {
     SDL_Surface *imageSurface = NULL;
@@ -160,15 +162,16 @@ int main( int argc, char *argv[] )
     SDL_Surface *die4 = NULL;
     SDL_Surface *die5 = NULL;
     SDL_Surface *die6 = NULL;
+    int x;
     
     if ( SDL_Init( SDL_INIT_EVERYTHING ) < 0 )
     {
         cout << "SDL could not initialize! SDL Error: " << SDL_GetError( ) << endl;
     }
-            
+    
     SDL_Window *window = SDL_CreateWindow( "Hello SDL World", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_ALLOW_HIGHDPI );
     windowSurface = SDL_GetWindowSurface( window );
-            
+    
     if ( NULL == window )
     {
         cout << "Could not create window: " << SDL_GetError( ) << endl;
@@ -176,7 +179,16 @@ int main( int argc, char *argv[] )
     }
     
     SDL_Event windowEvent;
-
+    
+   /* int flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
+    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, flags);
+    if (renderer == nullptr)
+    {
+        cout << endl << SDL_GetError() << endl;
+        return -1;
+    }*/
+    
+    //Upload all the die pictures
     imageSurface = SDL_LoadBMP( "hello_world.bmp" );
     if( imageSurface == NULL )
     {
@@ -213,8 +225,79 @@ int main( int argc, char *argv[] )
         cout << "SDL could not load image! SDL Error: " << SDL_GetError( ) << endl;
     }
     
-    choose(imageSurface, image, die3, die4, die5, die6, windowSurface, window, windowEvent);
-    choose1(imageSurface, image, die3, die4, die5, die6, windowSurface, window, windowEvent);
+    while ( x != 1)
+    {
+        if ( SDL_PollEvent( &windowEvent ) )
+        {
+            if ( SDL_KEYDOWN == windowEvent.type )
+            {
+                if ( windowEvent.key.keysym.sym == SDLK_r)
+                {
+                    x = 1;
+                }
+            }
+        }
+        
+        choose(imageSurface, image, die3, die4, die5, die6, windowSurface, window, windowEvent);
+        choose1(imageSurface, image, die3, die4, die5, die6, windowSurface, window, windowEvent);
+    }
+    
+    while( x != 1)
+    {
+        if ( SDL_PollEvent( &windowEvent ) )
+        {
+            if ( SDL_KEYDOWN == windowEvent.type )
+            {
+                if ( windowEvent.key.keysym.sym == SDLK_r)
+                {
+                    x = 1;
+                }
+            }
+        }
+    }
+
+    /*SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, imageSurface);
+    
+    if (texture == NULL) {
+        fprintf(stderr, "CreateTextureFromSurface failed: %s\n", SDL_GetError());
+        exit(1);
+    }*/
+    
+    //SDL_RenderCopy(renderer, texture, &srcrect, &dstrect);
+    
+    /*image = SDL_LoadBMP( "hello.bmp" );
+    if( image == NULL )
+    {
+        cout << "SDL could not load image! SDL Error: " << SDL_GetError( ) << endl;
+    }
+    
+    SDL_Rect srcrect1;
+    SDL_Rect dstrect1;
+    
+    srcrect1.x = 0;
+    srcrect1.y = 0;
+    srcrect1.w = 200;
+    srcrect1.h = 200;
+    dstrect1.x = 0;
+    dstrect1.y = 0;
+    dstrect1.w = 75;
+    dstrect1.h = 25;
+    
+    
+    SDL_BlitSurface( image, &srcrect1, windowSurface, &dstrect1 );
+    
+    //Update the surface
+    SDL_UpdateWindowSurface( window );
+    while ( true )
+    {
+        if ( SDL_PollEvent( &windowEvent ) )
+        {
+            if ( SDL_QUIT == windowEvent.type )
+            {
+                break;
+            }
+        }
+    }*/
     
     SDL_FreeSurface(die3);
     SDL_FreeSurface(die4);
@@ -231,10 +314,10 @@ int main( int argc, char *argv[] )
     die5 = NULL;
     die6 = NULL;
     windowSurface = NULL;
-
+    
     SDL_DestroyWindow( window );
     SDL_Quit( );
-
+    
     return EXIT_SUCCESS;
-
+    
 }
