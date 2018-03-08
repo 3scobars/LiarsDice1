@@ -1,0 +1,214 @@
+//creates the first image
+/*void create(SDL_Surface *d, SDL_Renderer *renderer1, SDL_Window *win, SDL_Event windowEvent1)
+{
+    SDL_Texture *texture = NULL;
+    if( d == NULL )
+    {
+        cout << "SDL could not load image! SDL Error: " << SDL_GetError( ) << "create texture" << endl;
+    }
+    
+    texture = SDL_CreateTextureFromSurface(renderer1, d);
+    SDL_FreeSurface(d);
+    
+    SDL_Rect srcrect;
+    SDL_Rect dstrect;
+    
+    srcrect.x = 0;
+    srcrect.y = 0;
+    srcrect.w = 200;
+    srcrect.h = 200;
+    dstrect.x = WIDTH/2;
+    dstrect.y = HEIGHT/2;
+    dstrect.w = 200;
+    dstrect.h = 200;
+    
+    SDL_RenderClear(renderer1);
+    SDL_RenderCopy(renderer1, texture, &srcrect, &dstrect);
+    SDL_RenderPresent(renderer1);
+    
+    SDL_UpdateWindowSurface( win );
+    
+    while ( true )
+    {
+        if ( SDL_PollEvent( &windowEvent1 ) )
+        {
+            if ( SDL_KEYDOWN == windowEvent1.type )
+            {
+                if ( windowEvent1.key.keysym.sym == SDLK_SPACE)
+                {
+                    break;
+                }
+            }
+        }
+    }
+}
+
+//creates second image
+void create1(SDL_Surface *d, SDL_Renderer *renderer1, SDL_Window *win, SDL_Event windowEvent1)
+{
+    SDL_Texture *texture = NULL;
+    if( d == NULL )
+    {
+        cout << "SDL could not load image! SDL Error: " << SDL_GetError( ) << endl;
+    }
+    
+    texture = SDL_CreateTextureFromSurface(renderer1, d);
+    SDL_FreeSurface(d);
+    
+    SDL_Rect srcrect;
+    SDL_Rect dstrect;
+    
+    srcrect.x = 0;
+    srcrect.y = 0;
+    srcrect.w = 200;
+    srcrect.h = 200;
+    dstrect.x = 340;
+    dstrect.y = 380;
+    dstrect.w = 200;
+    dstrect.h = 200;
+    
+    SDL_RenderClear(renderer1);
+    SDL_RenderCopy(renderer1, texture, &srcrect, &dstrect);
+    SDL_RenderPresent(renderer1);
+    
+    SDL_UpdateWindowSurface( win );
+    
+    while ( true )
+    {
+        if ( SDL_PollEvent( &windowEvent1 ) )
+        {
+            if ( SDL_KEYDOWN == windowEvent1.type )
+            {
+                if ( windowEvent1.key.keysym.sym == SDLK_SPACE)
+                {
+                    break;
+                }
+            }
+        }
+    }
+} */
+
+//creates third image
+/*void create3(SDL_Surface *d, SDL_Renderer *renderer1, SDL_Window *win, SDL_Event windowEvent1)
+{
+    SDL_Texture *bitmapTex = NULL;
+    
+    if( d == NULL )
+    {
+        cout << "SDL could not load image! SDL Error: " << SDL_GetError( ) << endl;
+    }
+    
+    bitmapTex = SDL_CreateTextureFromSurface(renderer1, d);
+    SDL_FreeSurface(d);
+    
+    int x = random_integer() % 5 + 1;
+    SDL_Rect srcrect;
+    SDL_Rect dstrect;
+    
+    switch (x)
+    {
+        case 1:
+            srcrect.x = 0;
+            break;
+        case 2:
+            srcrect.x = 205;
+            break;
+        case 3:
+            srcrect.x = 396;
+            break;
+        case 4:
+            srcrect.x = 604;
+            break;
+        case 5:
+            srcrect.x = 802;
+            break;
+        case 6:
+            srcrect.x = 1002;
+            break;
+    }
+    
+    srcrect.y = 0;
+    srcrect.w = 200;
+    srcrect.h = 200;
+    dstrect.x = 0;
+    dstrect.y = 0;
+    dstrect.w = 200;
+    dstrect.h = 200;
+    
+    SDL_RenderClear(renderer1);
+    SDL_RenderCopy(renderer1, bitmapTex, &srcrect, &dstrect);
+    SDL_RenderPresent(renderer1);
+    
+    SDL_UpdateWindowSurface( win );
+    
+    while ( true )
+    {
+        if ( SDL_PollEvent( &windowEvent1 ) )
+        {
+            if ( SDL_KEYDOWN == windowEvent1.type )
+            {
+                if ( windowEvent1.key.keysym.sym == SDLK_SPACE)
+                {
+                    break;
+                }
+            }
+        }
+    }
+}
+*/
+ 
+//randomly chooses a die to create
+/*void choose(SDL_Surface *pic, SDL_Surface *pic2, SDL_Surface *pic3, SDL_Surface *pic4, SDL_Surface *pic5, SDL_Surface *pic6, SDL_Renderer *renderer1, SDL_Window *win, SDL_Event windowEvent1)
+{
+    int x = random_integer() % 5 + 1;
+    
+    switch (x)
+    {
+        case 1:
+            create(pic, renderer1, win, windowEvent1);
+            break;
+        case 2:
+            create(pic2, renderer1, win, windowEvent1);
+            break;
+        case 3:
+            create(pic3, renderer1, win, windowEvent1);
+            break;
+        case 4:
+            create(pic4, renderer1, win, windowEvent1);
+            break;
+        case 5:
+            create(pic5, renderer1, win, windowEvent1);
+            break;
+        case 6:
+            create(pic6, renderer1, win, windowEvent1);
+            break;
+    }
+}
+
+//randomly chooses the second image to create
+void choose1(SDL_Surface *p, SDL_Surface *p2, SDL_Surface *p3, SDL_Surface *p4, SDL_Surface *p5, SDL_Surface *p6, SDL_Renderer *renderer1, SDL_Window *wind, SDL_Event windowEvent2)
+{
+    int x = random_integer() % 5 + 1;
+    
+    switch (x)
+    {
+        case 1:
+            create1(p, renderer1, wind, windowEvent2);
+            break;
+        case 2:
+            create1(p2, renderer1, wind, windowEvent2);
+            break;
+        case 3:
+            create1(p3, renderer1, wind, windowEvent2);
+            break;
+        case 4:
+            create1(p4, renderer1, wind, windowEvent2);
+            break;
+        case 5:
+            create1(p5, renderer1, wind, windowEvent2);
+            break;
+        case 6:
+            create1(p6, renderer1, wind, windowEvent2);
+            break;
+    }
+}*/
